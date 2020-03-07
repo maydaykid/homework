@@ -1,21 +1,16 @@
 ﻿using System;
 
-namespace объявление_переменных
+namespace альбом
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int age;
-            int day;
-            byte planets;
-            float time;
-            char sinNumber;
-            string poem;
-            bool life;
-            bool death;
-            string name;
-            bool end;
+            int allPic = 52;
+            int strings = allPic / 3;
+            int picLeft = allPic % 3;
+            Console.WriteLine("В альбоме " + strings + " заполененных рядов, " + picLeft + " картинок осталось сверх меры.");
+            Console.ReadKey();
         }
     }
 }
