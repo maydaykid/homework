@@ -1,0 +1,27 @@
+using System;
+
+namespace бабульки
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int numberOfPeople;
+            int timeOfCure = 10;
+            int fullTimeInMinutes;
+            int hourOfWaiting;
+            int minuteOfWaiting;
+
+            Console.WriteLine("Сколько людей в очереди?");
+            numberOfPeople = Convert.ToInt32(Console.ReadLine());
+
+            fullTimeInMinutes = numberOfPeople * timeOfCure;
+
+            hourOfWaiting = fullTimeInMinutes / 60;
+            minuteOfWaiting = fullTimeInMinutes % 60;
+
+            Console.WriteLine("Вам придётся подождать " + hourOfWaiting + " часов и " + minuteOfWaiting + " минут. Смиритесь.");
+            Console.ReadKey();
+        }
+    }
+}
