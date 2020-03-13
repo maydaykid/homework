@@ -1,0 +1,29 @@
+using System;
+
+namespace gold_and_crystals
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int amountOfGold;
+            int amountOfCrystals;
+            int crystalPrice = 100;
+            bool enoughGold;
+
+            Console.WriteLine("Здравствуй, путник. Сколько у тебя золота?");
+            amountOfGold = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Хорошо. Один кристалл стоит " + crystalPrice + " золотых монет. Сколько ты хочешь купить?");
+            amountOfCrystals = Convert.ToInt32(Console.ReadLine());
+
+            enoughGold = amountOfGold >= amountOfCrystals * crystalPrice;
+
+            amountOfCrystals *= Convert.ToInt32(enoughGold);
+            amountOfGold -= amountOfCrystals * crystalPrice;
+
+            Console.WriteLine("Теперь у тебя " + amountOfCrystals + " кристаллов и " + amountOfGold + " золота.");
+            Console.ReadKey();
+        }
+    }
+}
