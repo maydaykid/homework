@@ -1,0 +1,169 @@
+using System;
+
+namespace convert
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Приветствую в транспортном узле 'Гвиневер', космический путешественник!");
+            Console.WriteLine("Нелегко с этими пришельцами, а? Ещё сложнее с их экономикой.");
+            Console.WriteLine("Но не волнуйся! Мы здесь обмениваем ксотоны, йотоны и зотоны.");
+            Console.WriteLine("В любой последовательности, в любом количестве. Если они у тебя, конечно, есть.");
+
+            
+            float xoton;
+            float yoton;
+            float zoton;
+            int xToY = 10, yToX = 13, yToZ = 21, zToY = 11, xToZ = 45, zToX = 5;
+            string userInput;
+            float currencyCount;
+
+            Console.Write("Давай-ка посмотрим, сколько у тебя на счету ксотонов: ");
+            xoton = Convert.ToSingle(Console.ReadLine());
+
+            Console.Write("И йотонов: ");
+            yoton = Convert.ToSingle(Console.ReadLine());
+
+            Console.Write("И зотонов: ");
+            zoton = Convert.ToSingle(Console.ReadLine());
+
+            Console.WriteLine("Что ты хочешь сделать теперь? Просто нажми нужную кнопку на терминале!");
+
+            for ( ; ; )
+            {
+
+                Console.WriteLine("1 - поменять ксотоны на йотоны");
+                Console.WriteLine("2 - поменять йотоны на ксотоны");
+                Console.WriteLine("3 - поменять йотоны на зотоны");
+                Console.WriteLine("4 - поменять зотоны на йотоны");
+                Console.WriteLine("5 - поменять ксотоны на зотоны");
+                Console.WriteLine("6 - поменять зотоны на ксотоны");
+                Console.WriteLine("выход - завершить выполнение операций");
+
+                userInput = Console.ReadLine();
+
+                if (userInput == "выход")
+                {
+                    Console.WriteLine("Было приятно иметь с тобой дело. Удачного путешествия!");
+                    break;
+
+                }
+                else
+                {
+                    switch (userInput)
+                    {
+
+                        case "1":
+                            Console.WriteLine("КСОТОНЫ НА ЙОТОНЫ");
+                            Console.Write("Сколько: ");
+                            currencyCount = Convert.ToSingle(Console.ReadLine());
+                            if (xoton >= currencyCount)
+                            {
+                                xoton -= currencyCount;
+                                yoton += currencyCount / xToY;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Да ты на мели, приятель. Попробуй другую операцию или умерь аппетиты.");
+
+                            }
+                            break;
+
+                        case "2":
+                            Console.WriteLine("ЙОТОНЫ НА КСОТОНЫ");
+                            Console.Write("Сколько: ");
+                            currencyCount = Convert.ToSingle(Console.ReadLine());
+                            if (yoton >= currencyCount)
+                            {
+                                yoton -= currencyCount;
+                                xoton += currencyCount / yToX;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Да ты на мели, приятель. Попробуй другую операцию или умерь аппетиты.");
+
+                            }
+                            break;
+
+                        case "3":
+                            Console.WriteLine("ЙОТОНЫ НА ЗОТОНЫ");
+                            Console.Write("Сколько: ");
+                            currencyCount = Convert.ToSingle(Console.ReadLine());
+                            if (yoton >= currencyCount)
+                            {
+                                yoton -= currencyCount;
+                                zoton += currencyCount / yToZ;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Да ты на мели, приятель. Попробуй другую операцию или умерь аппетиты.");
+
+                            }
+                            break;
+
+                        case "4":
+                            Console.WriteLine("ЗОТОНЫ НА ЙОТОНЫ");
+                            Console.Write("Сколько: ");
+                            currencyCount = Convert.ToSingle(Console.ReadLine());
+                            if (zoton >= currencyCount)
+                            {
+                                zoton -= currencyCount;
+                                yoton += currencyCount / zToY;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Да ты на мели, приятель. Попробуй другую операцию или умерь аппетиты.");
+
+                            }
+                            break;
+
+                        case "5":
+                            Console.WriteLine("КСОТОНЫ НА ЗОТОНЫ");
+                            Console.Write("Сколько: ");
+                            currencyCount = Convert.ToSingle(Console.ReadLine());
+                            if (xoton >= currencyCount)
+                            {
+                                xoton -= currencyCount;
+                                zoton += currencyCount / xToZ;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Да ты на мели, приятель. Попробуй другую операцию или умерь аппетиты.");
+
+                            }
+                            break;
+
+                        case "6":
+                            Console.WriteLine("ЗОТОНЫ НА КСОТОНЫ");
+                            Console.Write("Сколько: ");
+                            currencyCount = Convert.ToSingle(Console.ReadLine());
+                            if (zoton >= currencyCount)
+                            {
+                                zoton -= currencyCount;
+                                xoton += currencyCount / zToX;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Да ты на мели, приятель. Попробуй другую операцию или умерь аппетиты.");
+
+                            }
+                            break;
+
+                    }
+                }
+
+                Console.WriteLine("Теперь у тебя " + xoton + " ксотонов, " + yoton + " йотонов и " + zoton + " зотонов. Продолжим?");
+            }
+            
+
+           
+        }
+    }
+}
