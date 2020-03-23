@@ -29,7 +29,7 @@ namespace convert
 
             Console.WriteLine("Что ты хочешь сделать теперь? Просто нажми нужную кнопку на терминале!");
 
-            for ( ; ; )
+            while (true)
             {
                 Console.WriteLine("1 - поменять ксотоны на йотоны");
                 Console.WriteLine("2 - поменять йотоны на ксотоны");
