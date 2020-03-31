@@ -1,0 +1,19 @@
+using System;
+
+namespace numbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int firstNumber = 7;
+
+            while (firstNumber <= 98)
+            {
+                Console.WriteLine(firstNumber);
+                firstNumber += 7;
+            }
+            //в цикле for изменить значение int можно только через инкремент или декремент
+        }
+    }
+}
