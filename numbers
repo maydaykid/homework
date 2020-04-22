@@ -6,18 +6,11 @@ namespace numbers
     {
         static void Main(string[] args)
         {
-            int firstNumber = 7;
-
-            while (firstNumber <= 98)
-            {
-                Console.WriteLine(firstNumber);
-                firstNumber += 7;
-            }
-            
              for(int secondNumber = 7; secondNumber <= 98; secondNumber += 7)
             {
                 Console.WriteLine(secondNumber);
             }
+            //выглядит лаконичнее, легче читается
         }
     }
 }
