@@ -13,7 +13,11 @@ namespace numbers
                 Console.WriteLine(firstNumber);
                 firstNumber += 7;
             }
-            //в цикле for изменить значение int можно только через инкремент или декремент
+            
+             for(int secondNumber = 7; secondNumber <= 98; secondNumber += 7)
+            {
+                Console.WriteLine(secondNumber);
+            }
         }
     }
 }
