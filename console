@@ -1,0 +1,114 @@
+using System;
+
+namespace console
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string userInputForCommand;
+            string userInputForColourOfBackground;
+            string userInputForColourOfForeground;
+            string data = " ";
+            string password = " ";
+            string userInputForPassword;
+
+            Console.WriteLine("Добро пожаловать в хранилище данных. Введите команду для её выполнения.");
+
+            while (true)
+            {
+                Console.WriteLine("цвет фона - смена цвета консоли");
+                Console.WriteLine("цвет текста - смена цвета текста");
+                Console.WriteLine("ввести данные - ввод данных для сохранения и защиты");
+                Console.WriteLine("установить пароль - установка пароля для защиты данных");
+                Console.WriteLine("ввести пароль - вывод данных в консоль при вводе верного пароля");
+                Console.WriteLine("выход - завершение использования программы, сброс всех данных");
+
+                userInputForCommand = Console.ReadLine();
+
+                if (userInputForCommand == "выход")
+                {
+                    break;
+                }
+                else
+                {
+                    switch (userInputForCommand)
+                    {
+                        case "цвет фона":
+                            {
+                                Console.WriteLine("\nВыберите цвет: красный, синий, зелёный.");
+                                userInputForColourOfBackground = Console.ReadLine();
+
+                                switch (userInputForColourOfBackground)
+                                {
+                                    case "красный":
+                                        {
+                                            Console.BackgroundColor = ConsoleColor.Red;
+                                        }
+                                        break;
+                                    case "синий":
+                                        {
+                                            Console.BackgroundColor = ConsoleColor.Blue;
+                                        }
+                                        break;
+                                    case "зелёный":
+                                        {
+                                            Console.BackgroundColor = ConsoleColor.Green;
+                                        }
+                                        break;
+                                }
+                            }
+                            break;
+                        case "цвет текста":
+                            {
+                                Console.WriteLine("\nВыберите цвет: чёрный, белый.");
+                                userInputForColourOfForeground = Console.ReadLine();
+
+                                switch (userInputForColourOfForeground)
+                                {
+                                    case "чёрный":
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Black;
+                                        }
+                                        break;
+                                    case "белый":
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                        }
+                                        break;
+                                }
+                            }
+                            break;
+                        case "ввести данные":
+                            {
+                                data = Console.ReadLine();
+                                Console.WriteLine("\nДанные сохранены.");
+                            }
+                            break;
+                        case "установить пароль":
+                            {
+                                password = Console.ReadLine();
+                                Console.WriteLine("\nПароль сохранён.");
+                            }
+                            break;
+                        case "ввести пароль":
+                            {
+                                userInputForPassword = Console.ReadLine();
+                                if (userInputForPassword == password)
+                                {
+                                    Console.WriteLine(data);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\nНеверный пароль. Попробуйте снова.");
+                                }
+                            }
+                            break;
+                    }
+                }
+                Console.Clear();
+            }
+        }
+    }
+}
