@@ -8,11 +8,8 @@ namespace console
         {
 
             string userInputForCommand;
-            string userInputForColourOfBackground;
-            string userInputForColourOfForeground;
             string data = " ";
             string password = " ";
-            string userInputForPassword;
 
             Console.WriteLine("Добро пожаловать в хранилище данных. Введите команду для её выполнения.");
 
@@ -38,7 +35,7 @@ namespace console
                         case "цвет фона":
                             {
                                 Console.WriteLine("\nВыберите цвет: красный, синий, зелёный.");
-                                userInputForColourOfBackground = Console.ReadLine();
+                                string userInputForColourOfBackground = Console.ReadLine();
 
                                 switch (userInputForColourOfBackground)
                                 {
@@ -63,7 +60,7 @@ namespace console
                         case "цвет текста":
                             {
                                 Console.WriteLine("\nВыберите цвет: чёрный, белый.");
-                                userInputForColourOfForeground = Console.ReadLine();
+                                string userInputForColourOfForeground = Console.ReadLine();
 
                                 switch (userInputForColourOfForeground)
                                 {
@@ -94,7 +91,7 @@ namespace console
                             break;
                         case "ввести пароль":
                             {
-                                userInputForPassword = Console.ReadLine();
+                                string userInputForPassword = Console.ReadLine();
                                 if (userInputForPassword == password)
                                 {
                                     Console.WriteLine(data);
