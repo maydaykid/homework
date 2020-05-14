@@ -33,64 +33,45 @@ namespace console
                     switch (userInputForCommand)
                     {
                         case "цвет фона":
-                            {
                                 Console.WriteLine("\nВыберите цвет: красный, синий, зелёный.");
                                 string userInputForColourOfBackground = Console.ReadLine();
 
                                 switch (userInputForColourOfBackground)
                                 {
                                     case "красный":
-                                        {
                                             Console.BackgroundColor = ConsoleColor.Red;
-                                        }
                                         break;
                                     case "синий":
-                                        {
                                             Console.BackgroundColor = ConsoleColor.Blue;
-                                        }
                                         break;
                                     case "зелёный":
-                                        {
                                             Console.BackgroundColor = ConsoleColor.Green;
-                                        }
                                         break;
                                 }
-                            }
                             break;
                         case "цвет текста":
-                            {
                                 Console.WriteLine("\nВыберите цвет: чёрный, белый.");
                                 string userInputForColourOfForeground = Console.ReadLine();
 
                                 switch (userInputForColourOfForeground)
                                 {
                                     case "чёрный":
-                                        {
                                             Console.ForegroundColor = ConsoleColor.Black;
-                                        }
                                         break;
                                     case "белый":
-                                        {
                                             Console.ForegroundColor = ConsoleColor.White;
-                                        }
                                         break;
                                 }
-                            }
                             break;
                         case "ввести данные":
-                            {
                                 data = Console.ReadLine();
                                 Console.WriteLine("\nДанные сохранены.");
-                            }
                             break;
                         case "установить пароль":
-                            {
                                 password = Console.ReadLine();
                                 Console.WriteLine("\nПароль сохранён.");
-                            }
                             break;
                         case "ввести пароль":
-                            {
                                 string userInputForPassword = Console.ReadLine();
                                 if (userInputForPassword == password)
                                 {
@@ -100,7 +81,6 @@ namespace console
                                 {
                                     Console.WriteLine("\nНеверный пароль. Попробуйте снова.");
                                 }
-                            }
                             break;
                     }
                 }
