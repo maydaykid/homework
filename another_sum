@@ -9,7 +9,7 @@ namespace another_sum
         {
             int[] array = new int[1];
             bool working = true;
-            int i = 0;
+            int amountOfNumbers = 0;
 
             while (working)
             {
@@ -23,14 +23,14 @@ namespace another_sum
                     case "добавить число":
                         Console.Write("Добавляемое число: ");
                         string userUnputForNumber = Console.ReadLine();
-                        array[i] = Convert.ToInt32(userUnputForNumber);
+                        array[amountOfNumbers] = Convert.ToInt32(userUnputForNumber);
                         int[] tempArray = new int[array.Length + 1];
                         for(int j =0; j < array.Length; j++)
                         {
                             tempArray[j] = array[j];
                         }
                         array = tempArray;
-                        i++;
+                        amountOfNumbers++;
                         break;
                     case "вывести сумму":
                         int sum = 0;
