@@ -1,0 +1,43 @@
+using System;
+
+namespace big_one
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[,] array = new int[10, 10];
+            Random rand = new Random();
+            int biggestInt = 0;
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    array[i, j] = rand.Next(0, 100);
+                    if (biggestInt < array[i, j])
+                    {
+                        biggestInt = array[i, j];
+                    }
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine("\n");
+            }
+
+            Console.WriteLine("Наибольшее число равно " + biggestInt + ".\n");
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (biggestInt == array[i, j])
+                    {
+                        array[i, j] = 0;
+                    }
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine("\n");
+            }
+        }
+    }
+}
