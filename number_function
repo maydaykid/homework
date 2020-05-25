@@ -1,0 +1,36 @@
+using System;
+
+namespace number_function
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string userInput;
+            Console.Write("Приветствую. Введите число: ");
+            NumberConfirmation(out userInput);
+            Console.WriteLine($"Ваше число {userInput} подтверждено. Нажмите любую клавишу для выхода из программы.");
+            Console.ReadKey();
+        }
+
+        static int NumberConfirmation(out string userInput)
+        {
+            userInput = Console.ReadLine();
+            bool isNumber = false;
+
+            while(isNumber == false)
+            {
+                if (!int.TryParse(userInput, out int neededNumber))
+                {
+                    Console.Write("Обнаружено нечисленное значение. Попробуйте снова: ");
+                    userInput = Console.ReadLine();
+                }
+                else 
+                {
+                    isNumber = true;
+                }
+            }
+            return Convert.ToInt32(userInput);
+        }
+    }
+}
