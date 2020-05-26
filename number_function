@@ -9,12 +9,12 @@ namespace number_function
             string userInput;
             Console.Write("Приветствую. Введите число: ");
             userInput = Console.ReadLine();
-            NumberOrNot(userInput);
+            CheckNumberOrNot(userInput);
             Console.WriteLine($"Ваше число {userInput} подтверждено. Нажмите любую клавишу для выхода из программы.");
             Console.ReadKey();
         }
 
-        static int NumberOrNot(string userInput)
+        static int CheckNumberOrNot(string userInput)
         {
             bool isNumber = false;
 
