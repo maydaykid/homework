@@ -9,12 +9,12 @@ namespace number_function
             string userInput;
             Console.Write("Приветствую. Введите число: ");
             userInput = Console.ReadLine();
-            MakeUserToInputNumber(userInput);
+            ReadInt(userInput);
             Console.WriteLine($"Ваше число {userInput} подтверждено. Нажмите любую клавишу для выхода из программы.");
             Console.ReadKey();
         }
 
-        static int MakeUserToInputNumber(string userInput)
+        static int ReadInt(string userInput)
         {
             bool isNumber = false;
 
