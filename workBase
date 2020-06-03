@@ -10,8 +10,8 @@ namespace workBase
             Console.ReadKey();
             bool isWorking = true;
             int documentNumber = 0;
-            string[] namesAndSurnames = new string[1];
-            string[] profession = new string[1];
+            string[] namesAndSurnames = new string[0];
+            string[] profession = new string[0];
 
             while (isWorking)
             {
@@ -58,6 +58,7 @@ namespace workBase
                 }
             }
         }
+        
         static string[] AddData(string[] data, int index)
         {
             string input = Console.ReadLine();
@@ -70,6 +71,7 @@ namespace workBase
             data = tempArray;
             return data;
         }
+        
         static void ViewAllData(string[] nameSurname, string[] profession)
         {
             for(int i = 0; i < (nameSurname.Length - 1); i++)
@@ -85,6 +87,7 @@ namespace workBase
             }
             Console.ReadKey();
         }
+        
         static string[] EraseData(int index, string[] data)
         {
             for(int i = 0; i < data.Length; i++)
@@ -104,6 +107,7 @@ namespace workBase
             data = tempArray;
             return data;
         }
+        
         static void SurnameSearch(string[] nameSurname, string[] profession)
         {
             bool employeeFound = false;
