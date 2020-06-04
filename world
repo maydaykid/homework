@@ -1,0 +1,119 @@
+using System;
+
+namespace world
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.CursorVisible = false;
+
+            bool isPlaying = true;
+            char[,] map = new char[7, 7] { { '#', '#', '#', '#', '#', '#', '#' }, { '#', ' ', ' ', ' ', ' ', ' ', '#' }, { '#', ' ', '#', ' ', '#', ' ', '#' }, { '#', ' ', ' ', '@', ' ', ' ', '#' }, { '#', ' ', '#', ' ', '#', ' ', '#' }, { '#', ' ', ' ', ' ', ' ', ' ', '#' }, { '#', '#', '#', '#', '#', '#', '#' } };
+            int starX, starY;
+            int pearlsAmount = 0, pearlsGot = 0;
+            int playerX, playerY;
+            int playerDX = 0, playerDY = 0;
+            DrawMap(map, out playerX, out playerY, out pearlsAmount);
+            starX = playerX;
+            starY = playerY;
+
+            while(isPlaying)
+            {
+                Console.SetCursorPosition(0, 10);
+                Console.Write("Жемчужины: " + pearlsGot + "/" + pearlsAmount);
+
+                Console.SetCursorPosition(playerX, playerY);
+                Console.Write('@');
+
+                if(Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+
+                    switch(key.Key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            playerDX = 0; playerDY = -1;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            playerDX = 0; playerDY = 1;
+                            break;
+                        case ConsoleKey.RightArrow:
+                            playerDX = 1; playerDY = 0;
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            playerDX = -1; playerDY = 0;
+                            break;
+                    }
+
+                    if (map[playerX + playerDX, playerY + playerDY] == 'o')
+                    {
+                        pearlsGot += 1;
+                        map[playerX + playerDX, playerY + playerDY] = ' ';
+                    }
+
+                    if (pearlsGot == pearlsAmount)
+                    {
+                        map[starX, starY] = '*';
+                        Console.SetCursorPosition(starX, starY);
+                        Console.Write('*');
+                    }
+
+                    if(map[starX, starY] == '*')
+                    {
+                        Console.SetCursorPosition(0, 11);
+                        Console.Write("Забери звезду!");
+                    }
+
+                    if (map[playerX + playerDX, playerY + playerDY] == '*')
+                    {
+                        isPlaying = false;
+                        Console.SetCursorPosition(0, 15);
+                    }
+
+                    if (map[playerX + playerDX, playerY + playerDY] != '#')
+                    {
+                        Console.SetCursorPosition(playerX, playerY);
+                        Console.Write(' ');
+
+                        playerX += playerDX;
+                        playerY += playerDY;
+
+                        Console.SetCursorPosition(playerX, playerY);
+                        Console.Write('@');
+                    }
+                }
+            }
+            Console.SetCursorPosition(0, 15);
+        }
+
+        static char[,] DrawMap(char[,] map, out int playerX, out int playerY, out int pearlsAmount)
+        {
+            playerX = 0;
+            playerY = 0;
+            pearlsAmount = 0;
+
+            for(int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    if(map[i,j] == '@')
+                    {
+                        playerX = i;
+                        playerY = j;
+                    }
+                    else if(map[i,j] == ' ')
+                    {
+                        map[i, j] = 'o';
+                        pearlsAmount += 1;
+                    }
+
+                    Console.Write(map[i, j]);
+                }
+                Console.WriteLine();
+            }
+
+            return map;
+        }
+    }
+}
