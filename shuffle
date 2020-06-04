@@ -41,8 +41,6 @@ namespace shuffle
                 }
                 Console.WriteLine(array[i]);
             }
-
-            return array;
         }
     }
 }
