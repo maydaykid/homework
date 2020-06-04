@@ -8,7 +8,7 @@ namespace shuffle
         static void Main(string[] args)
         {
             int[] numbers = { 1, 2, 3, 4, 5 };
-            numbers = Shuffle(numbers);
+            Shuffle(numbers);
         }
 
         static int[] Shuffle(int[] array)
