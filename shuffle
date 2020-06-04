@@ -13,13 +13,12 @@ namespace shuffle
 
         static int[] Shuffle(int[] array)
         {
-            int[] tempArray = new int[array.Length];
             Random rand = new Random();
 
-            for(int i = 0; i < tempArray.Length; i++)
+            for(int i = 0; i < array.Length; i++)
             {
                 bool originalNumber = false;
-                tempArray[i] = rand.Next(1, (array.Length + 1));
+                array[i] = rand.Next(1, (array.Length + 1));
 
                 if (i != 0)
                 { 
@@ -27,23 +26,22 @@ namespace shuffle
                     {
                         for (int j = 0; j < i; j++)
                         {
-                            if (tempArray[i] != tempArray[j])
+                            if (array[i] != array[j])
                             {
                                 originalNumber = true;
                             }
                             else
                             {
                                 originalNumber = false;
-                                tempArray[i] = rand.Next(1, (array.Length + 1));
+                                array[i] = rand.Next(1, (array.Length + 1));
                                 break;
                             }
                         }
                     }
                 }
-                Console.WriteLine(tempArray[i]);
+                Console.WriteLine(array[i]);
             }
 
-            array = tempArray;
             return array;
         }
     }
