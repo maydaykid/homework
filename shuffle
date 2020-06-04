@@ -1,0 +1,50 @@
+using System;
+using System.Globalization;
+
+namespace shuffle
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = { 1, 2, 3, 4, 5 };
+            numbers = Shuffle(numbers);
+        }
+
+        static int[] Shuffle(int[] array)
+        {
+            int[] tempArray = new int[array.Length];
+            Random rand = new Random();
+
+            for(int i = 0; i < tempArray.Length; i++)
+            {
+                bool originalNumber = false;
+                tempArray[i] = rand.Next(1, (array.Length + 1));
+
+                if (i != 0)
+                { 
+                    while (originalNumber == false)
+                    {
+                        for (int j = 0; j < i; j++)
+                        {
+                            if (tempArray[i] != tempArray[j])
+                            {
+                                originalNumber = true;
+                            }
+                            else
+                            {
+                                originalNumber = false;
+                                tempArray[i] = rand.Next(1, (array.Length + 1));
+                                break;
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine(tempArray[i]);
+            }
+
+            array = tempArray;
+            return array;
+        }
+    }
+}
