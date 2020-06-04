@@ -11,7 +11,7 @@ namespace shuffle
             Shuffle(numbers);
         }
 
-        static int[] Shuffle(int[] array)
+        static void Shuffle(int[] array)
         {
             Random rand = new Random();
 
