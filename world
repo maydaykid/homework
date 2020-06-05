@@ -26,7 +26,7 @@ namespace world
                 Console.SetCursorPosition(playerX, playerY);
                 Console.Write('@');
 
-                if(Console.KeyAvailable)
+                if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey(true);
 
@@ -46,29 +46,17 @@ namespace world
                             break;
                     }
 
-                    if (map[playerX + playerDX, playerY + playerDY] == 'o')
-                    {
-                        pearlsGot += 1;
-                        map[playerX + playerDX, playerY + playerDY] = ' ';
-                    }
-
-                    if (pearlsGot == pearlsAmount)
-                    {
-                        map[starX, starY] = '*';
-                        Console.SetCursorPosition(starX, starY);
-                        Console.Write('*');
-                    }
-
-                    if(map[starX, starY] == '*')
-                    {
-                        Console.SetCursorPosition(0, 11);
-                        Console.Write("Забери звезду!");
-                    }
 
                     if (map[playerX + playerDX, playerY + playerDY] == '*')
                     {
                         isPlaying = false;
                         Console.SetCursorPosition(0, 15);
+                    }
+
+                    if (map[playerX + playerDX, playerY + playerDY] == 'o')
+                    {
+                        pearlsGot += 1;
+                        map[playerX + playerDX, playerY + playerDY] = ' ';
                     }
 
                     if (map[playerX + playerDX, playerY + playerDY] != '#')
@@ -83,6 +71,7 @@ namespace world
                         Console.Write('@');
                     }
                 }
+                map = TreasureCheck(map, starX, starY, pearlsGot, pearlsAmount, playerX, playerDX, playerY, playerDY);
             }
             Console.SetCursorPosition(0, 15);
         }
@@ -111,6 +100,24 @@ namespace world
                     Console.Write(map[i, j]);
                 }
                 Console.WriteLine();
+            }
+
+            return map;
+        }
+
+        static char[,] TreasureCheck(char[,] map, int starX, int starY, int pearlsGot, int pearlsAmount, int playerX, int playerDX, int playerY, int playerDY)
+        {
+            if (pearlsGot == pearlsAmount)
+            {
+                map[starX, starY] = '*';
+                Console.SetCursorPosition(starX, starY);
+                Console.Write('*');
+            }
+
+            if (map[starX, starY] == '*')
+            {
+                Console.SetCursorPosition(0, 11);
+                Console.Write("Забери звезду!");
             }
 
             return map;
