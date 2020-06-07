@@ -14,9 +14,11 @@ namespace world
             int pearlsAmount = 0, pearlsGot = 0;
             int playerX, playerY;
             int playerDX = 0, playerDY = 0;
-            DrawMap(map, out playerX, out playerY, out pearlsAmount);
+            DrawMap(map);
+            GetPlayerPosition(map, out playerX, out playerY);
             starX = playerX;
             starY = playerY;
+            CountPearls(map, out pearlsAmount);
 
             while(isPlaying)
             {
@@ -28,35 +30,16 @@ namespace world
 
                 if (Console.KeyAvailable)
                 {
-                    ConsoleKeyInfo key = Console.ReadKey(true);
-
-                    switch(key.Key)
-                    {
-                        case ConsoleKey.UpArrow:
-                            playerDX = 0; playerDY = -1;
-                            break;
-                        case ConsoleKey.DownArrow:
-                            playerDX = 0; playerDY = 1;
-                            break;
-                        case ConsoleKey.RightArrow:
-                            playerDX = 1; playerDY = 0;
-                            break;
-                        case ConsoleKey.LeftArrow:
-                            playerDX = -1; playerDY = 0;
-                            break;
-                    }
-
+                    GetDirection(out playerDX, out playerDY);
 
                     if (map[playerX + playerDX, playerY + playerDY] == '*')
                     {
-                        isPlaying = false;
-                        Console.SetCursorPosition(0, 15);
+                        EndGame(out isPlaying);
                     }
 
                     if (map[playerX + playerDX, playerY + playerDY] == 'o')
                     {
-                        pearlsGot += 1;
-                        map[playerX + playerDX, playerY + playerDY] = ' ';
+                        pearlsGot = GetPearl(map, pearlsGot, playerX, playerY, playerDX, playerDY);
                     }
 
                     if (map[playerX + playerDX, playerY + playerDY] != '#')
@@ -71,30 +54,20 @@ namespace world
                         Console.Write('@');
                     }
                 }
-                map = TreasureCheck(map, starX, starY, pearlsGot, pearlsAmount, playerX, playerDX, playerY, playerDY);
+                map = CheckTreasure(map, starX, starY, pearlsGot, pearlsAmount, playerX, playerDX, playerY, playerDY);
             }
             Console.SetCursorPosition(0, 15);
         }
 
-        static char[,] DrawMap(char[,] map, out int playerX, out int playerY, out int pearlsAmount)
+        static char[,] DrawMap(char[,] map)
         {
-            playerX = 0;
-            playerY = 0;
-            pearlsAmount = 0;
-
             for(int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    if(map[i,j] == '@')
-                    {
-                        playerX = i;
-                        playerY = j;
-                    }
-                    else if(map[i,j] == ' ')
+                    if(map[i,j] == ' ')
                     {
                         map[i, j] = 'o';
-                        pearlsAmount += 1;
                     }
 
                     Console.Write(map[i, j]);
@@ -105,7 +78,65 @@ namespace world
             return map;
         }
 
-        static char[,] TreasureCheck(char[,] map, int starX, int starY, int pearlsGot, int pearlsAmount, int playerX, int playerDX, int playerY, int playerDY)
+        static void GetPlayerPosition(char[,] map, out int playerX, out int playerY)
+        {
+            playerX = 0;
+            playerY = 0;
+
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    if (map[i, j] == '@')
+                    {
+                        playerX = i;
+                        playerY = j;
+                    }
+                }
+            }
+        }
+
+        static void CountPearls(char[,] map, out int pearlsAmount)
+        {
+            pearlsAmount = 0;
+            
+            for(int i = 0; i < map.GetLength(0); i++)
+            {
+                for(int j = 0; j < map.GetLength(1); j++)
+                {
+                    if(map[i,j] == 'o')
+                    {
+                        pearlsAmount += 1;
+                    }
+                }
+            }
+        }
+
+        static void GetDirection(out int playerDX, out int playerDY)
+        {
+            playerDX = 0;
+            playerDY = 0;
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+
+            switch (key.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    playerDX = 0; playerDY = -1;
+                    break;
+                case ConsoleKey.DownArrow:
+                    playerDX = 0; playerDY = 1;
+                    break;
+                case ConsoleKey.RightArrow:
+                    playerDX = 1; playerDY = 0;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    playerDX = -1; playerDY = 0;
+                    break;
+            }
+        }
+
+        static char[,] CheckTreasure(char[,] map, int starX, int starY, int pearlsGot, int pearlsAmount, int playerX, int playerDX, int playerY, int playerDY)
         {
             if (pearlsGot == pearlsAmount)
             {
@@ -121,6 +152,20 @@ namespace world
             }
 
             return map;
+        }
+
+        static int GetPearl(char[,] map, int pearlsGot, int playerX, int playerY, int playerDX, int playerDY)
+        {
+            pearlsGot += 1;
+            map[playerX + playerDX, playerY + playerDY] = ' ';
+
+            return pearlsGot;
+        }
+
+        static void EndGame(out bool isPlaying)
+        {
+            isPlaying = false;
+            Console.SetCursorPosition(0, 15);
         }
     }
 }
