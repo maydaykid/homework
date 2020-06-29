@@ -1,0 +1,33 @@
+using System;
+
+namespace exit
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool isWorking = true;
+            string userInput;
+            int cycleAmount = 0;
+
+            while(isWorking)
+            {
+                Console.Clear();
+                Console.WriteLine("Пройдено циклов: " + cycleAmount + "\n");
+                Console.WriteLine("Для продолжения работы введите 'продолжить'.\nДля завершения работы введите 'выход'.\n");
+                Console.Write("Поле для ввода команды: ");
+                userInput = Console.ReadLine();
+
+                switch(userInput)
+                {
+                    case "продолжить":
+                        cycleAmount++;
+                        break;
+                    case "выход":
+                        isWorking = false;
+                        break;
+                }    
+            }
+        }
+    }
+}
