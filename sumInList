@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace list
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> numbers = new List<int>();
+            bool isWorking = true;
+
+            while (isWorking)
+            {
+                Console.WriteLine("Введите команду для необходимого действия:\nдобавить число\nвывести сумму\nвыход");
+                string userInputForCommand = Console.ReadLine();
+                switch (userInputForCommand)
+                {
+                    case "выход":
+                        isWorking = false;
+                        break;
+                    case "добавить число":
+                        Console.Write("Добавляемое число: ");
+                        string userUnputForNumber = Console.ReadLine();
+                        numbers.Add(Convert.ToInt32(userUnputForNumber));
+                        break;
+                    case "вывести сумму":
+                        Console.WriteLine("Сумма введённых чисел равна " + numbers.Sum() + ".");
+                        Console.ReadKey();
+                        break;
+                }
+                Console.Clear();
+            }
+        }
+    }
+}
