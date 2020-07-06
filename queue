@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+
+namespace Queue
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Queue<int> customers = new Queue<int>();
+            Random rand = new Random();
+            int ourMoney = 0;
+
+            for(int i = 0; i < 10; i++)
+            {
+                customers.Enqueue(rand.Next(50, 1001));
+            }
+
+            Console.WriteLine("Суммы покупок клиентов:");
+
+            foreach(var customer in customers)
+            {
+                Console.WriteLine(customer);
+            }
+
+
+            Console.WriteLine("Сумма в кассе: " + ourMoney);
+            Console.ReadKey();
+            Console.Clear();
+
+            while (customers.Count > 0)
+            {
+                ourMoney += customers.Dequeue();
+                Console.WriteLine("Сумма в кассе: " + ourMoney);
+                Console.WriteLine("Осталось покупателей: " + customers.Count);
+                Console.ReadKey();
+                Console.Clear();
+            }
+
+            Console.WriteLine("Рабочий день окончен. Итоговая сумма в кассе: " + ourMoney);
+            Console.ReadKey();
+        }
+    }
+}
