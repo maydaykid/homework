@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+
+namespace workBaseCollection
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<string, string> workers = new Dictionary<string, string>();
+            string nameInput, positionInput;
+
+            Console.WriteLine("Получен допуск администратора к базе данных компании 'GENERAL'.\nЗдесь будет представлена основная информация о рабониках: имя, \nфамилия и должность.\nНа данный момент база пуста.\nНажмите любую клавишу для вывода списка комманд.");
+            Console.ReadKey();
+            bool isWorking = true;
+
+            while (isWorking)
+            {
+                Console.Clear();
+                Console.SetCursorPosition(0, 15);
+                Console.Write("Доступные команды:\nдобавить досье\nвывести все досье\nудалить досье\nвыход");
+                Console.SetCursorPosition(0, 0);
+                Console.Write("Введите команду: ");
+                string userInputForCommand = Console.ReadLine();
+
+                switch (userInputForCommand)
+                {
+                    case ("добавить досье"):
+                        Console.Write("Введите должность: ");
+                        positionInput = Console.ReadLine();
+                        Console.Write("Введите имя и фамилию: ");
+                        nameInput = Console.ReadLine();
+                        workers.Add(positionInput, nameInput);
+                        Console.Write("Данные успешно внесены в базу.");
+                        Console.ReadKey();
+                        break;
+                    case ("вывести все досье"):
+                        foreach (var item in workers)
+                            Console.Write($"{item.Value}, {item.Key} - ");
+                        Console.ReadKey();
+                        break;
+                    case ("удалить досье"):
+                        Console.Write("Введите должность сотрудника для удаления данных: ");
+                        workers.Remove(Console.ReadLine());
+                        Console.WriteLine("Данные сотрудника успешно удалены из базы. Приказ на устранение передан в службу безопасности.");
+                        Console.ReadKey();
+                        break;
+                    case ("выход"):
+                        Console.WriteLine("Спасибо за использование протоколов безопасности 'FURY'.\nВаши данные под надёжной защитой.");
+                        Console.ReadKey();
+                        Console.SetCursorPosition(0, 50);
+                        isWorking = false;
+                        break;
+                }
+            }
+        }
+    }
+}
