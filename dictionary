@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
+namespace Dictionary
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool isWorking = true;
+            string userCommandInput;
+            string userWord;
+
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add("слово", "Единица речи, служащая для выражения отдельного понятия.");
+            dictionary.Add("словарь", "Сборник слов в алфавитном порядке, с пояснениями, толкованиями или с переводом на другой язык.");
+            dictionary.Add("язык", "Система звуковых и словарно-грамматических средств, закрепляющих результаты работы мышления и являющихся орудием общения людей, обмена мыслями и взаимного понимания в обществе.");
+            dictionary.Add("общение", "Обмен мнениями людей, неподдельно заинтересованных в точке зрения друг друга.");
+            dictionary.Add("общество", "Совокупность людей, объединённых способом производства материальных благ на определённой ступени исторического развития, определёнными производственными отношениями.");
+
+            Console.WriteLine("Добро пожаловать в систему 'Словарь'.");
+
+            while(isWorking)
+            {
+                Console.WriteLine("\n1 - вывести полный список доступных слов\n2 - узнать значение слова\n3 - выход");
+                Console.Write("Введите номер команды:");
+                userCommandInput = Console.ReadLine();
+
+                switch(userCommandInput)
+                {
+                    case "1":
+                        foreach(var item in dictionary)
+                        {
+                            Console.WriteLine(item.Key);
+                        }
+
+                        Console.ReadKey();
+                        break;
+                    case "2":
+                        Console.Write("Введите слово: ");
+                        userWord = Console.ReadLine();
+
+                        if (dictionary.ContainsKey(userWord))
+                            Console.WriteLine(userWord + " - " + dictionary[userWord]);
+                        else
+                            Console.WriteLine("Значение слова отсутствует в системе.");
+
+                        Console.ReadKey();
+                        break;
+                    case "3":
+                        isWorking = false;
+                        break;
+                }
+                Console.Clear();
+            }
+        }
+    }
+}
