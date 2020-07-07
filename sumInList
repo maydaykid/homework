@@ -22,8 +22,22 @@ namespace list
                         break;
                     case "добавить число":
                         Console.Write("Добавляемое число: ");
-                        string userUnputForNumber = Console.ReadLine();
-                        numbers.Add(Convert.ToInt32(userUnputForNumber));
+                        string userInputForNumber = Console.ReadLine();
+                        bool isNumber = false;
+
+                        while (isNumber == false)
+                        {
+                            if (!int.TryParse(userInputForNumber, out int neededNumber))
+                            {
+                                Console.Write("Обнаружено нечисленное значение. Попробуйте снова: ");
+                                userInputForNumber = Console.ReadLine();
+                            }
+                            else
+                            {
+                                isNumber = true;
+                            }
+                        }
+                        numbers.Add(Convert.ToInt32(userInputForNumber));
                         break;
                     case "вывести сумму":
                         Console.WriteLine("Сумма введённых чисел равна " + numbers.Sum() + ".");
