@@ -1,0 +1,34 @@
+using System;
+
+namespace player
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Player player1 = new Player("heman", 100500, 100500, 100500);
+            player1.ShowStats();
+        }
+
+        class Player
+        {
+            private string _name;
+            private int _health;
+            private int _armor;
+            private int _damage;
+
+            public Player(string name, int health, int armor, int damage)
+            {
+                _name = name;
+                _health = health;
+                _armor = armor;
+                _damage = damage;
+            }
+
+            public void ShowStats()
+            {
+                Console.WriteLine($"Name: {_name}\nHealth: {_health}\nArmor: {_armor}\nDamage: {_damage}");
+            }
+        }
+    }
+}
